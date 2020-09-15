@@ -1,0 +1,7 @@
+---
+title: "Homework1"
+author: Bin Yang
+output: github_document
+---
+
+

@@ -6,7 +6,7 @@ output: github_document
 
 library used for this homework.
 
-```{r}
+```{r, echo = FALSE}
 library(tidyverse)
 ```
 
@@ -51,7 +51,12 @@ as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)
 
 ## Problem 2
 
-```{r}
+**Load the data set.**
 
+```{r}
+data("penguins", package = "palmerpenguins")
 ```
 
+**A short description of the penguins data set.**
+
+There are `r ncol(penguins)` variables, and `r nrow(penguins)` observations in total in the data set. A breif summary of the data set is: `r dplyr::glimpse(penguins)`. The mean flipper length is `r mean(pull(penguins, !is.na(flipper_length_mm))` mm. 

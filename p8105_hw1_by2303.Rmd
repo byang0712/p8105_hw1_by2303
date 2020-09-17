@@ -4,15 +4,14 @@ author: Bin Yang
 output: github_document
 ---
 
-library used for this homework.
-
-```{r, echo = FALSE}
+```{r, include = FALSE, "load the packages needed for this homework"}
 library(tidyverse)
+library(ggplot2)
 ```
 
 ## Problem 1
 
-Create a data frame with the specified elements.
+**Create a data frame with the specified elements.**
 
 ```{r}
 prob1_df <- 
@@ -24,7 +23,7 @@ prob1_df <-
 )
 ```
 
-Take the mean of each variable in the data frame.
+**Take the mean of each variable in the data frame.**
 
 ```{r}
 mean(pull(prob1_df, samp))
@@ -59,4 +58,17 @@ data("penguins", package = "palmerpenguins")
 
 **A short description of the penguins data set.**
 
-There are `r ncol(penguins)` variables, and `r nrow(penguins)` observations in total in the data set. A breif summary of the data set is: `r dplyr::glimpse(penguins)`. The mean flipper length is `r mean(pull(penguins, !is.na(flipper_length_mm))` mm. 
+There are `r ncol(penguins)` variables, and `r nrow(penguins)` observations in total in the data set. The variables in this data set are: `r names(penguins)`. A brief summary of the variables is:
+`r  skimr::skim(penguins)` .   
+The mean of flipper length (rounded to two decimal place) is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), digits = 2)` mm. 
+
+**Scatter plot for flipper**
+
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point(na.rm = T)
+```
+
+```{r, include = FALSE, "export the plot"}
+ggsave("scatter_plot.png")
+```
+

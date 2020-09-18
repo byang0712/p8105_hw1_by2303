@@ -1,6 +1,8 @@
 ---
 title: "Homework1"
 author: Bin Yang
+UNI: by2303
+Date: 2020_09_18
 output: github_document
 ---
 
@@ -35,12 +37,17 @@ mean(pull(prob1_df, factor_vec))
 
 I can take the mean of numbers and logical but not character or factor.
 
-```{r}
+**Extract and convert variables to numeric.**
+
+```{r, results = 'hide', warning = FALSE}
 as.numeric(pull(prob1_df, samp))
 as.numeric(pull(prob1_df, samp_gt_0))
 as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))
 ```
+
+I can convert the logical vector and factor vector into numeric vector, but not the character vector. Character variable can not be converted to numeric variable, thus I can not take the mean of the character variable. The boolean values are treated as numeric naturally, i.e. you can perform numeric operations on the logic vector. Although factor variable can be converted to numeric variable, R will not automatically convert the type when performing numeric operations. This explains why I can take the mean of the logic vector but not the factor vector. 
+
 
 ```{r}
 as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
@@ -60,7 +67,7 @@ data("penguins", package = "palmerpenguins")
 
 There are `r ncol(penguins)` variables, and `r nrow(penguins)` observations in total in the data set. The variables in this data set are: `r names(penguins)`. A brief summary of the variables is:
 `r  skimr::skim(penguins)` .   
-The mean of flipper length (rounded to two decimal place) is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), digits = 2)` mm. 
+The mean of flipper length (rounded to two decimal place) is **`r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), digits = 2)`** mm. 
 
 **Scatter plot for flipper**
 
